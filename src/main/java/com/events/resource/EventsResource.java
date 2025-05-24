@@ -3,6 +3,7 @@ package com.events.resource;
 import com.events.model.EventRequest;
 import com.events.model.Event;
 import com.events.model.EventType;
+import com.events.service.EventLinksFactory;
 import com.events.service.EventsService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -21,10 +22,21 @@ public class EventsResource {
 
     @Inject
     private EventsService eventsService;
+    @Context
+    private UriInfo uriInfo;
+
+    private EventLinksFactory createLinksFactory() {
+        return new EventLinksFactory(uriInfo);
+    }
+
+    private void addLinksToEvent(Event event) {
+        event.addLinks(createLinksFactory().createForEvent(event));
+    }
 
     @GET
     public Response findAllEvents() {
         List<Event> events = eventsService.findAllEvents();
+        events.forEach(this::addLinksToEvent);
         return Response.ok(events).build();
     }
 
@@ -38,6 +50,7 @@ public class EventsResource {
                     .type(MediaType.TEXT_PLAIN)
                     .build();
         }
+        addLinksToEvent(event);
         return Response.ok(event).build();
     }
 
@@ -46,6 +59,7 @@ public class EventsResource {
     public Response findEventsByDate(@PathParam("date") String date) {
         try {
             List<Event> events = eventsService.findEventsByDate(LocalDate.parse(date));
+            events.forEach(this::addLinksToEvent);
             return Response.ok(events).build();
         } catch (DateTimeParseException e) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -56,8 +70,12 @@ public class EventsResource {
 
     @GET
     @Path("/week")
-    public Response findEventsByWeek(@QueryParam("week") int weekNumber, @QueryParam("year") int year) {
+    public Response findEventsByWeek(
+            @QueryParam("week") int weekNumber,
+            @QueryParam("year") int year
+    ) {
         List<Event> events = eventsService.findEventsByWeek(weekNumber, year);
+        events.forEach(this::addLinksToEvent);
         return Response.ok(events).build();
     }
 
@@ -86,6 +104,7 @@ public class EventsResource {
                     .build();
         }
 
+        addLinksToEvent(newEvent);
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
         builder.path(Long.toString(newEvent.getId()));
         return Response.created(builder.build()).entity(newEvent).build();
@@ -117,6 +136,7 @@ public class EventsResource {
                     .type(MediaType.TEXT_PLAIN)
                     .build();
         }
+        addLinksToEvent(event);
         return Response.ok(event).build();
     }
 

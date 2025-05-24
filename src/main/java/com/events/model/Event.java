@@ -2,6 +2,8 @@ package com.events.model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
+import jakarta.ws.rs.core.Link;
+import java.util.List;
 
 public class Event {
     private static long globalId = 1;
@@ -10,6 +12,7 @@ public class Event {
     private EventType type;
     private LocalDateTime dateTime;
     private String description;
+    private List<Link> links;
 
     public Event(String name, EventType type, LocalDateTime dateTime, String description) {
         this.id = globalId++;
@@ -85,6 +88,18 @@ public class Event {
 
     public int getYearNumber() {
         return dateTime.getYear();
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
+
+    public void addLinks(List<Link> links) {
+        this.links = links;
     }
 }
 
