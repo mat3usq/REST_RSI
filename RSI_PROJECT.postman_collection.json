@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "074b6d0b-ae45-42f6-b0b5-adf7a0a921b1",
+		"name": "RSI_PROJECT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26615989"
+	},
+	"item": [
+		{
+			"name": "findAllEvents",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findEventById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/20",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findEventsByWeek",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/week?week=25&year=2024",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"week"
+					],
+					"query": [
+						{
+							"key": "week",
+							"value": "25"
+						},
+						{
+							"key": "year",
+							"value": "2024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findEventsByDate",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/date/2024-06-20",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"date",
+						"2024-06-20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addEvent",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"nowe wydarzenie\",\n    \"type\": \"CONCERT\",\n    \"dateTime\": \"2024-06-20T20:00:00\",\n    \"description\": \"opis noweego wydarzenia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEvent",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"zaktualizowane wydarzenie\",\n    \"type\": \"CINEMA\",\n    \"dateTime\": \"2024-06-20T20:00:00\",\n    \"description\": \"opis zaktualizowaneego wydarzenia\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/20",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generateRaport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Response Data</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>{{response}}</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    return { response: pm.response.text() }",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/report?date=2024-06-20&byWeek=true",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"report"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-06-20"
+						},
+						{
+							"key": "byWeek",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventTypes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/types",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEvent",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:8181/bialystok-info/api/events/20",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"bialystok-info",
+						"api",
+						"events",
+						"20"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
