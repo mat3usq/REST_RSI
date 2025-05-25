@@ -3,6 +3,8 @@ package com.events.model;
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import jakarta.ws.rs.core.Link;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -12,7 +14,7 @@ public class Event {
     private EventType type;
     private LocalDateTime dateTime;
     private String description;
-    private List<Link> links;
+    private List<Link> links = new ArrayList<>();
 
     public Event(String name, EventType type, LocalDateTime dateTime, String description) {
         this.id = globalId++;

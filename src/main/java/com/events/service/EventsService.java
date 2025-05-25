@@ -1,12 +1,19 @@
 package com.events.service;
 
+import com.events.exception.*;
 import com.events.model.Event;
+import com.events.model.EventRequest;
 import com.events.model.EventType;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.List;
@@ -14,6 +21,8 @@ import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class EventsService {
+    @Context
+    private UriInfo uriInfo;
     private final List<Event> events = new ArrayList<>();
 
     public EventsService() {
@@ -34,97 +43,113 @@ public class EventsService {
         events.add(new Event("Educational Seminar", EventType.EDUCATION, LocalDateTime.of(2024, 7, 4, 14, 0), "Seminar on educational trends and practices"));
     }
 
-    public List<Event> findEventsByDate(LocalDate date) {
-        return events.stream()
-                .filter(event -> event.getDateTime().toLocalDate().equals(date))
-                .collect(Collectors.toList());
+    public List<Event> findEventsByDate(String date) {
+        try {
+            LocalDate dat = LocalDate.parse(date);
+            List<Event> evs = events.stream()
+                    .filter(event -> event.getDateTime().toLocalDate().equals(dat))
+                    .toList();
+            evs.forEach(this::addLinksToEvent);
+            return evs;
+        } catch (DateTimeParseException e) {
+            throw new InvalidEventException("Invalid date format. Please use YYYY-MM-DDTHH:MM:SS format");
+        }
     }
 
     public List<Event> findEventsByWeek(int weekNumber, int year) {
-        return events.stream()
+        List<Event> evs = events.stream()
                 .filter(event -> event.getWeekNumber() == weekNumber && event.getYearNumber() == year)
-                .collect(Collectors.toList());
+                .toList();
+        evs.forEach(this::addLinksToEvent);
+        return evs;
     }
 
     public Event findEventById(long eventId) {
-        try {
-            return events.stream()
-                    .filter(event -> event.getId() == eventId)
-                    .findFirst()
-                    .orElse(null);
-        } catch (NumberFormatException e) {
-            return null;
-        }
+        Event ev = events.stream()
+                .filter(event -> event.getId() == eventId)
+                .findFirst()
+                .orElseThrow(() -> new EventNotFoundException(eventId));
+
+        addLinksToEvent(ev);
+        return ev;
     }
 
-    public Event addEvent(Event event) {
-        if (event.getName() == null || event.getName().isEmpty() ||
-                event.getDescription() == null || event.getDescription().isEmpty() ||
-                event.getType() == null || event.getDateTime() == null) {
-            return null;
-        }
-
-        events.add(event);
-        return event;
+    public Event addEvent(EventRequest event) {
+        Event ev = validateEvent(event);
+        addLinksToEvent(ev);
+        events.add(ev);
+        return ev;
     }
 
-    public Event updateEvent(long eventId, Event updatedEvent) {
-        if (updatedEvent.getName() == null || updatedEvent.getName().isEmpty() ||
-                updatedEvent.getDescription() == null || updatedEvent.getDescription().isEmpty() ||
-                updatedEvent.getType() == null || updatedEvent.getDateTime() == null) {
-            return null;
-        }
+    public Event updateEvent(long eventId, EventRequest updatedEvent) {
+        Event ev = validateEvent(updatedEvent);
+        Event existing = findEventById(eventId);
 
-        try {
-            Optional<Event> existingEvent = events.stream()
-                    .filter(event -> event.getId() == eventId)
-                    .findFirst();
+        existing.setName(ev.getName());
+        existing.setType(ev.getType());
+        existing.setDateTime(ev.getDateTime());
+        existing.setDescription(ev.getDescription());
+        addLinksToEvent(existing);
 
-            if (existingEvent.isPresent()) {
-                Event eventToUpdate = existingEvent.get();
-                eventToUpdate.setName(updatedEvent.getName());
-                eventToUpdate.setType(updatedEvent.getType());
-                eventToUpdate.setDateTime(updatedEvent.getDateTime());
-                eventToUpdate.setDescription(updatedEvent.getDescription());
-                return eventToUpdate;
-            }
-            return null;
-        } catch (NumberFormatException e) {
-            return null;
-        }
+        return existing;
     }
 
-    public boolean deleteEvent(long eventId) {
-        try {
-            return events.removeIf(event -> event.getId() == eventId);
-        } catch (NumberFormatException e) {
-            return false;
+    public void deleteEvent(long eventId) {
+        if (!events.removeIf(event -> event.getId() == eventId)) {
+            throw new EventNotFoundException(eventId);
         }
     }
 
     public List<Event> findAllEvents() {
+        events.forEach(this::addLinksToEvent);
         return new ArrayList<>(events);
     }
 
-    public byte[] generateEventsReport(LocalDate date, boolean byWeek) {
-        List<Event> events;
-
-        if (date == null) {
-            events = findAllEvents();
-        } else if (byWeek) {
-            int weekNumber = date.get(WeekFields.ISO.weekOfWeekBasedYear());
-            int year = date.getYear();
-            events = findEventsByWeek(weekNumber, year);
-        } else {
-            events = findEventsByDate(date);
-        }
-
+    public byte[] generateEventsReport(String date, boolean byWeek) {
         try {
+            LocalDate parsedDate = LocalDate.parse(date);
+            List<Event> events = resolveEvents(parsedDate, byWeek);
             return new EventsReportPdfGenerator().generate(events);
+        } catch (DateTimeParseException e) {
+            throw new ReportGenerationException("Invalid date format. Please use YYYY-MM-DD format");
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new ReportGenerationException("Failed to generate PDF report");
         }
+    }
+
+    private List<Event> resolveEvents(LocalDate date, boolean byWeek) {
+        if (date == null) return findAllEvents();
+        if (byWeek) {
+            int week = date.get(WeekFields.ISO.weekOfWeekBasedYear());
+            int year = date.getYear();
+            return findEventsByWeek(week, year);
+        }
+        return findEventsByDate(date.toString());
+    }
+
+    private Event validateEvent(EventRequest event) {
+        if (event.getName() == null || event.getName().isBlank()) {
+            throw new InvalidEventException("Event name is required");
+        }
+        if (event.getDescription() == null || event.getDescription().isBlank()) {
+            throw new InvalidEventException("Event description is required");
+        }
+        if (event.getType() == null) {
+            throw new InvalidEventException("Event type is required");
+        }
+        if (!isValidEventType(event.getType())) {
+            throw new InvalidEventException("Invalid event type. Valid types are: " + Arrays.toString(EventType.values()));
+        }
+        if (event.getDateTime() == null) {
+            throw new InvalidEventException("Event date/time is required");
+        }
+        try {
+            LocalDateTime.parse(event.getDateTime());
+        } catch (DateTimeParseException e) {
+            throw new InvalidEventException("Invalid date format. Please use YYYY-MM-DDTHH:MM:SS format");
+        }
+
+        return new Event(event);
     }
 
     public List<String> findAllEventsTypes() {
@@ -136,9 +161,18 @@ public class EventsService {
     public boolean isValidEventType(String type) {
         try {
             EventType.valueOf(type);
-            return false;
-        } catch (IllegalArgumentException e) {
             return true;
+        } catch (IllegalArgumentException e) {
+            return false;
         }
     }
+
+    private EventLinksFactory createLinksFactory() {
+        return new EventLinksFactory(uriInfo);
+    }
+
+    private void addLinksToEvent(Event event) {
+        event.addLinks(createLinksFactory().createForEvent(event));
+    }
+
 }
