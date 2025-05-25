@@ -107,7 +107,9 @@ public class EventsService {
 
     public byte[] generateEventsReport(String date, boolean byWeek) {
         try {
-            LocalDate parsedDate = LocalDate.parse(date);
+            LocalDate parsedDate = null;
+            if (date != null && !date.isEmpty())
+                parsedDate = LocalDate.parse(date);
             List<Event> events = resolveEvents(parsedDate, byWeek);
             return new EventsReportPdfGenerator().generate(events);
         } catch (DateTimeParseException e) {
