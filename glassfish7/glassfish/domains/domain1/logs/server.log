@@ -13592,3 +13592,94 @@ file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/genera
 [2025-05-25T15:18:11.611230+02:00] [GF 7.0.22] [WARNING] [] [org.glassfish.grizzly.config.SSLConfigurator] [tid: _ThreadID=61 _ThreadName=http-listener-2(1)] [levelValue: 900] [[
   WEB0307: All SSL cipher suites disabled for network-listener http-listener-2, using SSL implementation specific defaults]]
 
+[2025-05-25T15:19:57.470123+02:00] [GF 7.0.22] [INFO] [] [jakarta.enterprise.inject.spi] [tid: _ThreadID=68 _ThreadName=admin-listener(1)] [levelValue: 800] [[
+  Disabling Weld for ApplicationInfo[name=bialystok-info]]]
+
+[2025-05-25T15:19:57.473730+02:00] [GF 7.0.22] [INFO] [] [org.glassfish.web.loader.WebappClassLoader] [tid: _ThreadID=68 _ThreadName=admin-listener(1)] [levelValue: 800] [[
+  close(), this:
+org.glassfish.web.loader.WebappClassLoader@53319a17[name=/bialystok-info], urls=[
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/classes/
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/commons-logging-1.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/txw2-4.0.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/fontbox-2.0.27.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/slf4j-api-2.0.7.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/jakarta.activation-api-2.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/jaxb-core-4.0.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/istack-commons-runtime-4.1.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/pdfbox-2.0.27.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/angus-activation-2.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/jaxb-runtime-4.0.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/slf4j-simple-2.0.7.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/bialystok-info/WEB-INF/lib/jakarta.xml.bind-api-4.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/ejb/bialystok-info/
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/bialystok-info/
+][delegate=true, context=/bialystok-info, status=RUNNING, antiJARLocking=false, securityManager=false, packageDefinitionSecurityEnabled=false, repositories=RepositoryManager[WEB-INF/classes/], notFound.size=30, pathTimestamps.size=25, resourceEntryCache.size=22]]]
+
+[2025-05-25T15:19:57.919641+02:00] [GF 7.0.22] [INFO] [NCLS-REST-00001] [jakarta.enterprise.admin.rest] [tid: _ThreadID=69 _ThreadName=admin-listener(2)] [levelValue: 800] [[
+  Listening to REST requests at context: /command/domain.]]
+
+[2025-05-25T15:19:57.942320+02:00] [GF 7.0.22] [INFO] [NCLS-CORE-00092] [jakarta.enterprise.system.core] [tid: _ThreadID=206 _ThreadName=Thread-35] [levelValue: 800] [[
+  Server shutdown initiated]]
+
+[2025-05-25T15:19:57.956156+02:00] [GF 7.0.22] [INFO] [NCLS-JMX-00002] [jakarta.enterprise.system.jmx] [tid: _ThreadID=206 _ThreadName=Thread-35] [levelValue: 800] [[
+  JMXStartupService: Stopped JMXConnectorServer: null]]
+
+[2025-05-25T15:19:57.956367+02:00] [GF 7.0.22] [INFO] [NCLS-JMX-00001] [jakarta.enterprise.system.jmx] [tid: _ThreadID=206 _ThreadName=Thread-35] [levelValue: 800] [[
+  JMXStartupService and JMXConnectors have been shut down.]]
+
+[2025-05-25T15:19:57.962471+02:00] [GF 7.0.22] [INFO] [] [jakarta.enterprise.inject.spi] [tid: _ThreadID=211 _ThreadName=RunLevelControllerThread-1748179197957] [levelValue: 800] [[
+  Disabling Weld for ApplicationInfo[name=demo-1.0-SNAPSHOT]]]
+
+[2025-05-25T15:19:57.963900+02:00] [GF 7.0.22] [INFO] [] [org.glassfish.web.loader.WebappClassLoader] [tid: _ThreadID=211 _ThreadName=RunLevelControllerThread-1748179197957] [levelValue: 800] [[
+  close(), this:
+org.glassfish.web.loader.WebappClassLoader@8ced46d[name=/demo-1.0-SNAPSHOT], urls=[
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/classes/
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/txw2-4.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.activation-api-2.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/angus-activation-1.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/istack-commons-runtime-4.1.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/jaxb-core-4.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/jaxb-runtime-4.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/demo-1.0-SNAPSHOT/WEB-INF/lib/jakarta.xml.bind-api-4.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/ejb/demo-1.0-SNAPSHOT//
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/demo-1.0-SNAPSHOT/
+][delegate=true, context=/demo-1.0-SNAPSHOT, status=RUNNING, antiJARLocking=false, securityManager=false, packageDefinitionSecurityEnabled=false, repositories=RepositoryManager[WEB-INF/classes/], notFound.size=48, pathTimestamps.size=11, resourceEntryCache.size=4]]]
+
+[2025-05-25T15:19:57.969969+02:00] [GF 7.0.22] [INFO] [] [jakarta.enterprise.inject.spi] [tid: _ThreadID=211 _ThreadName=RunLevelControllerThread-1748179197957] [levelValue: 800] [[
+  Disabling Weld for ApplicationInfo[name=rest-messages]]]
+
+[2025-05-25T15:19:57.972513+02:00] [GF 7.0.22] [INFO] [] [org.glassfish.web.loader.WebappClassLoader] [tid: _ThreadID=211 _ThreadName=RunLevelControllerThread-1748179197957] [levelValue: 800] [[
+  close(), this:
+org.glassfish.web.loader.WebappClassLoader@3b8a0f6b[name=/rest-messages], urls=[
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/classes/
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-server-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-media-json-binding-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/javassist-3.28.0-GA.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.inject-api-2.0.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-container-servlet-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/yasson-3.0.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.json.bind-api-3.0.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/hk2-locator-3.0.3.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/aopalliance-repackaged-3.0.3.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.ws.rs-api-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.json-api-2.0.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.json-2.0.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/osgi-resource-locator-1.0.3.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/hk2-utils-3.0.3.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.activation-api-2.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-common-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/hk2-api-3.0.3.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-hk2-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.validation-api-3.0.2.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jakarta.annotation-api-2.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-container-servlet-core-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/parsson-1.1.1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/javax.inject-1.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/applications/rest-messages/WEB-INF/lib/jersey-client-3.1.0.jar
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/ejb/rest-messages//
+file:/Users/mateusz/Desktop/REST_RSI/glassfish7/glassfish/domains/domain1/generated/rest-messages/
+][delegate=true, context=/rest-messages, status=RUNNING, antiJARLocking=false, securityManager=false, packageDefinitionSecurityEnabled=false, repositories=RepositoryManager[WEB-INF/classes/], notFound.size=24, pathTimestamps.size=34, resourceEntryCache.size=24]]]
+
+[2025-05-25T15:19:57.998757+02:00] [GF 7.0.22] [INFO] [NCLS-CORE-00013] [jakarta.enterprise.system.core] [tid: _ThreadID=206 _ThreadName=Thread-35] [levelValue: 800] [[
+  Shutdown procedure finished]]
+
